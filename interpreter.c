@@ -3,7 +3,11 @@
 #include <stdlib.h>
 
 #define MEMORY_SIZE 30000
-
+typedef struct {
+    char name[50];
+    void (*func)(int*, int*);
+} function;
+// funciones en desarrollo, pero se escribiran como [x + 2 3], que seria en python: x=lambda x, y: x + y; x(2, 3)
 void move_left(int* pointer) {
     (*pointer)--;
 }
@@ -22,7 +26,7 @@ void decrement_memory(int* memory, int pointer) {
     memory[pointer]--;
 }
 
-void read_and_print(int* memory, int pointer) {
+void repl(int* memory, int pointer) {
     printf("%c", memory[pointer]);
 }
 
@@ -41,7 +45,7 @@ void interpret(const char* code) {
         if (strcmp(instruction, "bye") == 0) {
             break;
         } else if (strchr(instruction, '[')) {
-            // Manejo de funciones (vacío por ahora)
+            // a
         } else {
             if (strcmp(instruction, "hi") == 0) {
                 move_left(&pointer);
@@ -54,7 +58,7 @@ void interpret(const char* code) {
             } else if (strcmp(instruction, "hallo") == 0) {
                 decrement_memory(memory, pointer);
             } else if (strcmp(instruction, "bonjour") == 0) {
-                read_and_print(memory, pointer);
+                repl(memory, pointer);
             } else {
                 printf("unknown command: %s\n", instruction);
             }
@@ -95,10 +99,8 @@ int main(int argc, char* argv[]) {
     }
 
     if (argc == 2) {
-        // Si se pasa un archivo, lo leemos
         fileread(argv[1]);
     } else {
-        // Si se pasan instrucciones directamente, las interpretamos
         interpret(argv[1]);
     }
 
