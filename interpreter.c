@@ -87,7 +87,7 @@ void fileread(const char* filename) {
 }
 
 int main() {
-    const char* filename = "codigo.hi";
+    const char* filename = "code.hi";
     fileread(filename);
     return 0;
 }
