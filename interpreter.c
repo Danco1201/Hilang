@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 #define MEMORY_SIZE 30000
 
@@ -64,6 +65,7 @@ void interpret(const char* code) {
 
     free(code_copy);
 }
+
 void fileread(const char* filename) {
     FILE* file = fopen(filename, "r");
     if (file == NULL) {
@@ -86,8 +88,19 @@ void fileread(const char* filename) {
     free(code);
 }
 
-int main() {
-    const char* filename = "code.hi";
-    fileread(filename);
+int main(int argc, char* argv[]) {
+    if (argc < 2) {
+        printf("Uso: %s <archivo.hi> o <instrucciones>\n", argv[0]);
+        return 1;
+    }
+
+    if (argc == 2) {
+        // Si se pasa un archivo, lo leemos
+        fileread(argv[1]);
+    } else {
+        // Si se pasan instrucciones directamente, las interpretamos
+        interpret(argv[1]);
+    }
+
     return 0;
 }
