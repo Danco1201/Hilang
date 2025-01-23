@@ -29,7 +29,9 @@ void decrement_memory(int* memory, int pointer) {
 void repl(int* memory, int pointer) {
     printf("%c", memory[pointer]);
 }
-
+int condition(int* memory, int pointer) {
+    return memory[pointer] != 0; 
+}
 void interpret(const char* code) {
     int memory[MEMORY_SIZE] = {0};
     int pointer = 0;
@@ -59,6 +61,13 @@ void interpret(const char* code) {
                 decrement_memory(memory, pointer);
             } else if (strcmp(instruction, "bonjour") == 0) {
                 repl(memory, pointer);
+            } else if (strstr(instruction, "[salve") != NULL) {
+                char condition[50], body[200];
+                if (sscanf(instruction, "[salve %s]", condition) == 1) {
+                    while (condition(memory, pointer)) {
+                        move_right(&pointer);
+                    }
+                }
             } else {
                 printf("unknown command: %s\n", instruction);
             }
