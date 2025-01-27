@@ -83,6 +83,9 @@ Hilang soporta las siguientes instrucciones:
 - `bonjour`: Imprime el carácter correspondiente al valor en la posición de memoria actual.
 - `[salve <condición>]`: Ejecuta un bucle mientras la condición sea verdadera. Actualmente, la condición es que el valor en la posición de memoria actual no sea cero.
 - `bye`: Termina la ejecución del programa.
+- `ciao`: Permite al usuario introducir un carácter en la celda actual.
+- `privet`: Restablece la celda actual a 0.
+- `ola`: Lleva el puntero a la primera celda de la memoria.
 - (Proximamente) `[funcion operador operacion]`: Crea una funcion lambda con una de las operaciones aritmeticas. Ejemplo: `[x + 2 3]`
 
 ## Licencia
